@@ -1,3 +1,5 @@
+import { Button } from "../common/Button";
+
 const TabNavigation = ({activeTab,onChange}) => {
   const tabs = [
     {
@@ -16,17 +18,17 @@ const TabNavigation = ({activeTab,onChange}) => {
 
 
   return(
-    <div className="flex justify-center mb-10">
-    <div className="flex bg-slate-200 rounded-full shadow-lg p-1 w-4xl justify-around">
+    <div className="flex justify-center mx-auto mb-10">
+    <div className="flex border border-tertiary md:bg-tertiary rounded-full p-1 w-5xl justify-around">
     {tabs.map((tab)=> (
-        <button 
+        <Button
         key={tab.value}
         onClick={()=> onChange(tab.value)}
-        className={`text-black px-6 py-2 rounded-full transition font-semibold flex-1
+        className={`text-accent px-6 py-2 rounded-full transition font-semibold flex-1 cursor-pointer
         ${
-        activeTab === tab.value ? "bg-white text-accent" :  "text-slate-500"}`}>
+        activeTab === tab.value ? "bg-white text-accent shadow-lg" :  "text-slate-500"}`}>
         {tab.label}
-        </button>
+        </Button>
     ))}
     </div>
     </div>

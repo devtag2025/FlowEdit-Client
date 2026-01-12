@@ -1,15 +1,20 @@
 import { Check } from "lucide-react";
+import { Button } from "./../common/Button";
 
 const PlanCard = ({ plan }) => {
   return (
     <div
-      className={`bg-slate-200 rounded-2xl p-8 flex flex-col transition
+      className={`relative bg-tertiary rounded-3xl p-8 flex flex-col transition-all duration-300
         ${
-          plan.highlighted
-            ? "shadow-lg scale-[1.05]"
-            : "border-slate-200 bg-slate-50"
+          plan.highlighted ? "shadow-xl scale-100" : "scale-95 hover:scale-100"
         }`}
     >
+      {plan.highlighted && (
+        <span className="absolute top-2 md:top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-sm px-4 py-2 rounded-lg shadow">
+          Current Plan
+        </span>
+      )}
+
       <h3 className="text-xl text-center font-semibold text-slate-600 mb-1">
         {plan.title}
       </h3>
@@ -25,27 +30,27 @@ const PlanCard = ({ plan }) => {
         {plan.features.map((feature) => (
           <li key={feature} className="flex items-center gap-3 text-accent">
             <span
-              className={`h-6 w-6 flex items-center justify-center rounded-full text-slate-600
+              className={`h-5 w-5 flex items-center justify-center rounded-full 
           ${plan.highlighted ? "bg-slate-300" : "bg-white"}`}
             >
-              <Check size={15} />
+              <Check size={12} className="text-slate-600" />
             </span>
 
-           {feature}
+            {feature}
           </li>
         ))}
       </ul>
 
-      <button
+      <Button
         className={`rounded-xl py-3 transition
           ${
             plan.highlighted
-              ? "bg-slate-200 text-slate-400 shadow-xl"
+              ? "bg-tertiary text-slate-400 shadow-xl"
               : "bg-white text-accent"
           }`}
       >
         {plan.buttonText}
-      </button>
+      </Button>
     </div>
   );
 };
