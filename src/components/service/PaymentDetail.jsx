@@ -54,7 +54,7 @@ const PaymentDetail = () => {
             </p>
           </div>
 
-          <Button className="flex items-center justify-center w-12 md:w-10 h-10 border md:border-2 border-slate-300 rounded-lg text-accent">
+          <Button className="flex items-center justify-center w-12 md:w-10 h-10 border md:border-2 border-slate-300 rounded-lg text-accent hover:bg-gray-300">
             <Pencil className="w-4 h-4" />
           </Button>
         </div>

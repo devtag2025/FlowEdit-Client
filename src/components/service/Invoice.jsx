@@ -1,38 +1,26 @@
 import { Download, FileText } from "lucide-react";
 import { Button } from "../common/Button";
-
-const invoices = [
-  {
-    id: "#001",
-    plan: "Pro Plan (Monthly)",
-    date: "11/1/2023",
-    amount: "$999.00",
-    status: "Paid",
-  },
-  {
-    id: "#002",
-    plan: "Pro Plan (Monthly)",
-    date: "11/1/2023",
-    amount: "$999.00",
-    status: "Paid",
-  },
-  {
-    id: "#003",
-    plan: "Pro Plan (Monthly)",
-    date: "11/1/2023",
-    amount: "$999.00",
-    status: "Paid",
-  },
-  {
-    id: "#004",
-    plan: "Pro Plan (Monthly)",
-    date: "11/1/2023",
-    amount: "$999.00",
-    status: "Paid",
-  },
-];
+import {
+  downloadAllInvoices,
+  downloadInvoice,
+  getInvoices,
+} from "@/services/service";
+import { useEffect, useState } from "react";
+import Loader from "../common/Loader";
 
 const Invoice = () => {
+  const [invoices, setInvoices] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    getInvoices().then((data) => {
+      setInvoices(data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <Loader />;
+
   return (
     <section className="max-w-5xl mx-auto overflow-hidden md:rounded-3xl">
       <div className="flex flex-col items-center md:gap-2 p-2 md:flex-row md:items-center md:justify-between md:p-8 md:bg-tertiary">
@@ -45,7 +33,10 @@ const Invoice = () => {
           </p>
         </div>
 
-        <Button className="hidden md:flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow text-sm font-medium text-accent hover:bg-gray-300">
+        <Button
+          onClick={() => downloadAllInvoices()}
+          className="hidden md:flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow text-sm font-medium text-accent hover:bg-gray-300"
+        >
           <Download size={16} />
           Download All
         </Button>
@@ -83,7 +74,10 @@ const Invoice = () => {
             </span>
 
             <div className="flex">
-              <Button className="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-300 hover:bg-white">
+              <Button
+                onClick={() => downloadInvoice(invoice)}
+                className="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-300 hover:bg-white"
+              >
                 <Download size={16} className="text-accent" />
               </Button>
             </div>
@@ -115,7 +109,10 @@ const Invoice = () => {
                 </span>
               </div>
 
-              <Button className="flex items-center justify-center gap-2 bg-white px-2 py-2 rounded-lg shadow font-medium text-accent text-xs">
+              <Button
+                onClick={() => downloadInvoice(invoice)}
+                className="flex items-center justify-center gap-2 bg-white px-2 py-2 rounded-lg shadow font-medium text-accent text-xs"
+              >
                 <Download size={14} />
                 Download
               </Button>
