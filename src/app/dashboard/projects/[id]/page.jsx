@@ -7,7 +7,7 @@ const page = () => {
   const { id } = useParams();
 
   return (
-    <div className="min-h-screen bg-secondary p-4 md:p-8">
+    <div className="min-h-screen bg-secondary p-2 md:p-8">
       <div className="max-w-7xl mx-auto space-y-6">
         <ProjectSection projectId={id} />
       </div>
