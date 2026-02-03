@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { X, Upload, Plus, Trash2 } from "lucide-react";
@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { DialogClose } from "@/components/ui/dialog";
-import { Switch } from "@/components/ui/switch";
 import {
   Dialog,
   DialogContent,
@@ -75,7 +74,7 @@ export default function NewProjectRequestModal({ isOpen, setIsOpen }) {
     overflow-y-auto
     overscroll-contain
     scroll-smooth
-    no-scrollbar
+    no-scrollbar 
   "
       >
         <DialogHeader className="bg-tertiary border-primary/20 p-10 pb-4 top-0">
